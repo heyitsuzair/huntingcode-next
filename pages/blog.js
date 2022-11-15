@@ -1,15 +1,33 @@
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Blog.module.css";
+import axios from "axios";
+import { fetchBlogs } from "../utils/api";
 
 const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
+
+  const fetchPosts = async () => {
+    try {
+      const { data } = await axios.get(fetchBlogs);
+      setBlogs(data);
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
   return (
     <div className={styles.container}>
       <style jsx>
         {`
           h3 {
             font-size: 28px;
+            text-align: center;
           }
         `}
       </style>
@@ -23,22 +41,16 @@ const Blog = () => {
       </Head>
       <main className={styles.main}>
         <div className={styles.grid}>
-          <div>
-            <div className="blogItem dummy">
-              <Link href={"/blogpost/learn-js"}>
-                <h3>How To Learn JavaScript</h3>
-              </Link>
-              <p>JavaScript Is The Web Language.</p>
-            </div>
-            <div className="blogItem">
-              <h3>How To Learn JavaScript</h3>
-              <p>JavaScript Is The Web Language.</p>
-            </div>
-            <div className="blogItem">
-              <h3>How To Learn JavaScript</h3>
-              <p>JavaScript Is The Web Language.</p>
-            </div>
-          </div>
+          {blogs.map((blog, index) => {
+            return (
+              <div key={index} className="blogItem">
+                <Link href={`/blogpost/${blog.slug}`}>
+                  <h3>{blog.title}</h3>
+                </Link>
+                <p>{blog.content.substr(0, 300)}...</p>
+              </div>
+            );
+          })}
         </div>
       </main>
     </div>
