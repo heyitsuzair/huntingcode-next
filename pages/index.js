@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import styles from "../styles/Home.module.css";
+import styles1 from "../styles/Home1.module.css";
+import styles2 from "../styles/Home2.module.css";
 
 export default function Home() {
   return (
@@ -40,7 +42,8 @@ export default function Home() {
         <p className={styles.description}>Hunting Developers Around World</p>
 
         <div className={styles.grid}>
-          <div className="blogs">
+          {/* <div className={`${styles1.blogs} ${styles2.blogs}`}> */}
+          <div>
             <h2>Popular Blogs</h2>
             <div className="blogItem">
               <h3>How To Learn JavaScript</h3>
