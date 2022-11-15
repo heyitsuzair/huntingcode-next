@@ -124,3 +124,9 @@
   margin: 3rem 0;
   text-align: center;
 }
+.navLinkActive {
+  color: #0070f3;
+}
+.navLink:hover {
+  color: #0070f3;
+}
