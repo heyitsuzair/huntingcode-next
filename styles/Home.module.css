@@ -117,3 +117,10 @@
   justify-content: flex-end;
   font-weight: 700;
 }
+.myImg {
+  border-radius: 50%;
+}
+.imgWrap {
+  margin: 3rem 0;
+  text-align: center;
+}
