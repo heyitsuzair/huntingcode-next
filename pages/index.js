@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import styles from "../styles/Home.module.css";
-import styles1 from "../styles/Home1.module.css";
-import styles2 from "../styles/Home2.module.css";
+// import styles1 from "../styles/Home1.module.css";
+// import styles2 from "../styles/Home2.module.css";
 
 export default function Home() {
   return (
