@@ -3,10 +3,11 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/Blogpost.module.css";
 import axios from "axios";
+import * as fs from "node:fs";
 import { fetchBlog } from "../../utils/api";
 
-const Slug = ({ blogPost }) => {
-  const [post, setPost] = useState(blogPost);
+const Slug = ({ myBlog }) => {
+  const [post, setPost] = useState(myBlog);
 
   return (
     <div className={styles.container}>
@@ -27,14 +28,25 @@ const Slug = ({ blogPost }) => {
   );
 };
 
-export async function getServerSideProps(context) {
-  const { slug } = context.query;
+// Generates `/posts/1` and `/posts/2`
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { slug: "how-to-learn-js" } },
+      { params: { slug: "how-to-learn-next-js" } },
+    ],
+    fallback: false, // can also be true or 'blocking'
+  };
+}
 
-  const { data } = await axios.get(fetchBlog + slug);
-  const blogPost = data;
+export async function getStaticProps(context) {
+  const { slug } = context.params;
+
+  let myBlog = await fs.promises.readFile(`blogdata/${slug}.json`, "utf-8");
+  console.log(myBlog);
 
   return {
-    props: { blogPost }, // will be passed to the page component as props
+    props: { myBlog: JSON.parse(myBlog) }, // will be passed to the page component as props
   };
 }
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Blog.module.css";
 import axios from "axios";
+import * as fs from "node:fs";
 import { fetchBlogs } from "../utils/api";
 
 const Blog = ({ allBlogs }) => {
@@ -44,13 +45,15 @@ const Blog = ({ allBlogs }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
+  let data = await fs.promises.readdir("blogdata");
+  let myFile;
   let allBlogs = [];
-  try {
-    const { data } = await axios.get(fetchBlogs);
-    allBlogs = data;
-  } catch (error) {
-    console.warn(error);
+
+  for (let index = 0; index < data.length; index++) {
+    const item = data[index];
+    myFile = await fs.promises.readFile(`blogdata/${item}`, "utf-8");
+    allBlogs.push(JSON.parse(myFile));
   }
 
   return {
