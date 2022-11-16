@@ -6,16 +6,6 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   return (
     <div className={styles.container}>
-      <style jsx>
-        {`
-          h2 {
-            font-size: 38px;
-          }
-          h3 {
-            font-size: 28px;
-          }
-        `}
-      </style>
       <Head>
         <title>Home</title>
         <meta
@@ -46,10 +36,11 @@ export default function Home() {
           />
         </div>
 
-        <p className={styles.description}>Hunting Developers Around World</p>
+        <strong className={styles.description}>
+          Hunting Developers Around World!
+        </strong>
 
-        <div className={styles.grid}>
-          {/* <div className={`${styles1.blogs} ${styles2.blogs}`}> */}
+        {/* <div className={styles.grid}>
           <div>
             <h2>Popular Blogs</h2>
             <div className="blogItem dummy">
@@ -65,7 +56,7 @@ export default function Home() {
               <p>JavaScript Is The Web Language.</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </main>
     </div>
   );

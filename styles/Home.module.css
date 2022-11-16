@@ -95,6 +95,9 @@
     width: 100%;
     flex-direction: column;
   }
+  .title {
+    font-size: 3rem;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

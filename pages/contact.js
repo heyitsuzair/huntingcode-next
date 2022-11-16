@@ -18,6 +18,10 @@ const Contact = () => {
         desc,
       };
       const { data } = await axios.post(postContact, apiData);
+      setname("");
+      setemail("");
+      setphone("");
+      setdesc("");
     } catch (error) {
       console.warn(error);
     }
@@ -28,61 +32,54 @@ const Contact = () => {
       <h1>Contact Us</h1>
       <form onSubmit={handleFormSubmit}>
         <div class={`mb-3 ${styles.grid}`}>
-          <label for="exampleInputEmail1" class="form-label">
-            Email address
-          </label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            name="email"
-            value={email}
-            required
-            onChange={(e) => setemail(e.target.value)}
-            aria-describedby="emailHelp"
-          />
-
           <div class={`mb-3 ${styles.grid}`}>
-            <label for="exampleInputName1" class="form-label">
-              Name
-            </label>
+            <input
+              type="email"
+              class={styles.formControl}
+              id="exampleInputEmail1"
+              name="email"
+              value={email}
+              placeholder="Email"
+              required
+              onChange={(e) => setemail(e.target.value)}
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class={`mb-3 ${styles.grid}`}>
             <input
               name="name"
               type="text"
-              class="form-control"
+              class={styles.formControl}
               value={name}
               required
+              placeholder="Name"
               onChange={(e) => setname(e.target.value)}
               id="exampleInputName1"
             />
           </div>
           <div class={`mb-3 ${styles.grid}`}>
-            <label for="exampleInputTel1" class="form-label">
-              Phone
-            </label>
             <input
               name="phone"
               type="tel"
-              class="form-control"
+              class={styles.formControl}
               id="exampleInputTel1"
+              placeholder="Phone"
               value={phone}
               required
               onChange={(e) => setphone(e.target.value)}
             />
           </div>
           <div class={`mb-3 ${styles.grid}`}>
-            <label for="exampleInputDescription1" class="form-label">
-              Description
-            </label>
             <textarea
               onChange={(e) => setdesc(e.target.value)}
               name="desc"
               rows={6}
               cols={21}
+              placeholder="Description"
               required
-            >
-              {desc}
-            </textarea>
+              class={styles.formControl}
+              value={desc}
+            ></textarea>
           </div>
           <button type="submit" class="btn btn-primary">
             Submit
