@@ -58,9 +58,7 @@ const Blog = ({ allBlogs, allCount }) => {
                   <Link href={`/blogpost/${blog.slug}`}>
                     <h3>{blog.title}</h3>
                   </Link>
-                  <span style={{ textAlign: "center", marginBottom: "2rem" }}>
-                    {blog.metaDesc}
-                  </span>
+                  <span style={{ textAlign: "center" }}>{blog.metaDesc}</span>
                   <Link
                     href={`/blogpost/${blog.slug}`}
                     className="btn btn-primary"
