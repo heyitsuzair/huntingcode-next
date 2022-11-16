@@ -35,7 +35,7 @@ const Blog = ({ allBlogs }) => {
                 <Link href={`/blogpost/${blog.slug}`}>
                   <h3>{blog.title}</h3>
                 </Link>
-                <p>{blog.content.substr(0, 300)}...</p>
+                <p style={{ textAlign: "center" }}>{blog.metaDesc}</p>
               </div>
             );
           })}

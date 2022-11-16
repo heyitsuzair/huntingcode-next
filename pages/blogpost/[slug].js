@@ -9,6 +9,10 @@ import { fetchBlog } from "../../utils/api";
 const Slug = ({ myBlog }) => {
   const [post, setPost] = useState(myBlog);
 
+  const createMarkup = (content) => {
+    return { __html: content };
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -22,7 +26,10 @@ const Slug = ({ myBlog }) => {
       <main className={styles.main}>
         <h1>{post.title}</h1>
         <hr className={styles.hr} />
-        <div className={styles.content}>{post.content}</div>
+        <div
+          className={styles.content}
+          dangerouslySetInnerHTML={createMarkup(post.content)}
+        ></div>
       </main>
     </div>
   );
