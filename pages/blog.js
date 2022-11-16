@@ -5,21 +5,8 @@ import styles from "../styles/Blog.module.css";
 import axios from "axios";
 import { fetchBlogs } from "../utils/api";
 
-const Blog = () => {
-  const [blogs, setBlogs] = useState([]);
-
-  const fetchPosts = async () => {
-    try {
-      const { data } = await axios.get(fetchBlogs);
-      setBlogs(data);
-    } catch (error) {
-      console.warn(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+const Blog = ({ allBlogs }) => {
+  const [blogs, setBlogs] = useState(allBlogs);
 
   return (
     <div className={styles.container}>
@@ -56,5 +43,19 @@ const Blog = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  let allBlogs = [];
+  try {
+    const { data } = await axios.get(fetchBlogs);
+    allBlogs = data;
+  } catch (error) {
+    console.warn(error);
+  }
+
+  return {
+    props: { allBlogs }, // will be passed to the page component as props
+  };
+}
 
 export default Blog;
