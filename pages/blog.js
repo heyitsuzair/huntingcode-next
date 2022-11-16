@@ -31,11 +31,19 @@ const Blog = ({ allBlogs }) => {
         <div className={styles.grid}>
           {blogs.map((blog, index) => {
             return (
-              <div key={index} className="blogItem">
+              <div key={index} className={styles.blogItem}>
                 <Link href={`/blogpost/${blog.slug}`}>
                   <h3>{blog.title}</h3>
                 </Link>
-                <p style={{ textAlign: "center" }}>{blog.metaDesc}</p>
+                <span style={{ textAlign: "center", marginBottom: "2rem" }}>
+                  {blog.metaDesc}
+                </span>
+                <Link
+                  href={`/blogpost/${blog.slug}`}
+                  className="btn btn-primary"
+                >
+                  See More
+                </Link>
               </div>
             );
           })}
