@@ -1,1 +1,1 @@
-Next JS Blog App Build By Muhammad Uzair. Made With :heart: By UZAIR.Live At https://huntingcode-next-uzair.vercel.app
+Next JS Blog App Build By Muhammad Uzair. Made With :heart: By UZAIR
